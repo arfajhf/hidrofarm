@@ -1,0 +1,916 @@
+@import url('https://fonts.googleapis.com/css2?family=Inclusive+Sans:ital,wght@0,300..700;1,300..700&display=swap');
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+
+@theme {
+    --font-sans: 'Inclusive Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+        'Segoe UI Symbol', 'Noto Color Emoji';
+}
+
+body {
+    font-family: 'Inclusive Sans', ui-sans-serif, system-ui, sans-serif;
+}
+
+.hidden {
+    display: none !important;
+}
+
+
+.hydro-auth-page,
+.hydro-dashboard-page {
+    background-color: #d8d8d8;
+    position: relative;
+}
+
+.hydro-auth-page::before,
+.hydro-dashboard-page::before {
+    background-image: url('/assets/img/body.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    content: "";
+    inset: 0;
+    pointer-events: none;
+    position: fixed;
+    z-index: 0;
+}
+
+.hydro-auth-page::before {
+    opacity: 0.17;
+}
+
+.hydro-dashboard-page::before {
+    opacity: 0.05;
+}
+
+.hydro-auth-shell,
+.hydro-dashboard {
+    position: relative;
+    z-index: 1;
+}
+
+.hydro-auth-shell {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 32px 20px;
+}
+
+.hydro-card {
+    background: #dddddd;
+    border-radius: 9px;
+    box-shadow: 0 18px 38px rgba(0, 0, 0, 0.16);
+    width: min(396px, calc(100vw - 40px));
+}
+
+.hydro-one-tap {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    min-height: 473px;
+    padding: 40px 34px 36px;
+}
+
+.hydro-login-card {
+    padding: 46px 42px 56px;
+}
+
+.hydro-brand {
+    align-items: center;
+    color: #0b3b70;
+    display: flex;
+    font-size: 22px;
+    font-weight: 800;
+    gap: 8px;
+    letter-spacing: 0;
+    line-height: 1;
+}
+
+.hydro-brand > span:last-child {
+    display: none;
+}
+
+.hydro-brand-form {
+    justify-content: center;
+    margin-bottom: 42px;
+}
+
+.hydro-brand-mark {
+    align-items: center;
+    background-image: url('/assets/img/logo.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    display: inline-flex;
+    height: 165px;
+    justify-content: center;
+    position: relative;
+    width: 303px;
+}
+
+.hydro-brand-mark::before {
+    content: none;
+}
+
+.hydro-brand-mark::after {
+    content: none;
+}
+
+.hydro-brand-mark span {
+    display: none;
+}
+
+.hydro-profile-button {
+    align-items: center;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 26px;
+    width: 100%;
+}
+
+.hydro-avatar {
+    align-items: center;
+    background: #c9c7c7;
+    border-radius: 999px;
+    display: flex;
+    font-size: 58px;
+    font-weight: 700;
+    height: 124px;
+    justify-content: center;
+    overflow: hidden;
+    width: 124px;
+}
+
+.hydro-avatar img,
+.hydro-dashboard-avatar img {
+    height: 100%;
+    object-fit: cover;
+    width: 100%;
+}
+
+.hydro-profile-name {
+    font-size: 16px;
+    font-weight: 500;
+    margin-top: 8px;
+}
+
+.hydro-profile-hint {
+    color: #555;
+    font-size: 16px;
+    margin-top: 8px;
+}
+
+.hydro-switch-account {
+    font-size: 16px;
+    margin-top: 12px;
+    width: min(376px, calc(100vw - 60px));
+}
+
+.hydro-form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.hydro-field label {
+    display: block;
+    font-size: 15px;
+    font-weight: 800;
+    margin-bottom: 7px;
+    padding-left: 20px;
+}
+
+.hydro-field input {
+    background: #eeeeee;
+    border: 0;
+    border-radius: 18px;
+    color: #222;
+    font-size: 15px;
+    height: 57px;
+    outline: none;
+    padding: 0 20px;
+    width: 100%;
+}
+
+.hydro-field input::placeholder {
+    color: #555;
+}
+
+.hydro-field input:focus {
+    box-shadow: 0 0 0 3px rgba(57, 169, 63, 0.24);
+}
+
+.hydro-password-field {
+    position: relative;
+}
+
+.hydro-password-field input {
+    padding-right: 56px;
+}
+
+.hydro-password-field button {
+    align-items: center;
+    display: flex;
+    height: 57px;
+    justify-content: center;
+    position: absolute;
+    right: 11px;
+    top: 0;
+    width: 42px;
+}
+
+.hydro-password-field svg {
+    height: 25px;
+    width: 25px;
+}
+
+.hydro-message {
+    border-radius: 14px;
+    font-size: 13px;
+    line-height: 1.4;
+    padding: 10px 14px;
+}
+
+.hydro-message.is-error {
+    background: #fde8e8;
+    color: #8f1f1f;
+}
+
+.hydro-message.is-success {
+    background: #e7f4df;
+    color: #2f5d2d;
+}
+
+.hydro-submit {
+    background: #39a93f;
+    border-radius: 9px;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 500;
+    height: 33px;
+    margin-top: 8px;
+    width: 100%;
+}
+
+.hydro-submit:disabled {
+    opacity: 0.7;
+}
+
+.home-topbar {
+    align-items: center;
+    background: #fff;
+    border: 1px solid #dfe3e2;
+    display: grid;
+    grid-template-columns: 260px 1fr 260px;
+    height: 69px;
+    padding: 0 53px;
+    position: relative;
+    z-index: 3;
+}
+
+.home-brand .hydro-brand-mark {
+    height: 56px;
+    width: 180px;
+}
+
+.home-nav {
+    align-items: center;
+    display: flex;
+    gap: 70px;
+    justify-content: center;
+}
+
+.home-nav a {
+    color: #666;
+    font-size: 20px;
+    font-weight: 800;
+}
+
+.home-nav a.is-active {
+    color: #000;
+}
+
+.home-user-menu {
+    justify-self: end;
+    position: relative;
+}
+
+.home-user-button {
+    align-items: center;
+    background: #f2f2f2;
+    border-radius: 999px;
+    display: flex;
+    font-size: 17px;
+    gap: 5px;
+    height: 38px;
+    padding: 0 16px 0 10px;
+}
+
+.home-user-icon {
+    align-items: center;
+    border: 2px solid #000;
+    border-radius: 999px;
+    display: flex;
+    height: 24px;
+    justify-content: center;
+    width: 24px;
+}
+
+.home-user-icon svg,
+.home-dropdown-item svg {
+    height: 18px;
+    width: 18px;
+}
+
+.home-chevron {
+    height: 18px;
+    margin-left: 10px;
+    width: 18px;
+}
+
+.home-dropdown {
+    background: #fff;
+    border-radius: 0 0 5px 5px;
+    box-shadow: 0 16px 28px rgba(0, 0, 0, 0.16);
+    min-width: 134px;
+    padding: 13px 24px 13px 38px;
+    position: absolute;
+    right: -24px;
+    top: 43px;
+    z-index: 5;
+}
+
+.home-dropdown p {
+    font-size: 14px;
+    margin-bottom: 9px;
+}
+
+.home-dropdown-item {
+    align-items: center;
+    display: flex;
+    font-size: 13px;
+    gap: 4px;
+    margin-top: 10px;
+    white-space: nowrap;
+}
+
+.home-dashboard {
+    margin: 0 auto;
+    max-width: 1282px;
+    min-height: calc(100vh - 103px);
+    padding: 50px 0 36px;
+    position: relative;
+    z-index: 1;
+}
+
+.home-metrics {
+    display: grid;
+    gap: 175.9px;
+    grid-template-columns: 553.05px 553.05px;
+    justify-content: center;
+    margin-bottom: 86px;
+}
+
+.home-metric-card {
+    background: rgba(255, 255, 255, 0.88);
+    border-radius: 9px;
+    box-shadow: 0 16px 24px rgba(0, 0, 0, 0.16);
+    display: grid;
+    grid-template-columns: 1fr 150px;
+    height: 149px;
+    padding: 28px 18px 10px 47px;
+    position: relative;
+    width: 553.05px;
+}
+
+.home-metric-card::before,
+.home-metric-card::after {
+    bottom: 0;
+    content: "";
+    height: 3px;
+    left: 0;
+    position: absolute;
+}
+
+.home-metric-card::before {
+    border-radius: 0 0 9px 9px;
+    width: 100%;
+}
+
+.home-metric-card::after {
+    left: 18px;
+    width: 65%;
+}
+
+.metric-temp::before,
+.metric-temp::after {
+    background: #39f04e;
+}
+
+.metric-humidity::before,
+.metric-humidity::after {
+    background: #f4de1c;
+}
+
+.metric-temp {
+    border-left: 3px solid #39f04e;
+}
+
+.metric-humidity {
+    border-left: 3px solid #f4de1c;
+}
+
+.home-metric-value {
+    font-size: 31px;
+    font-weight: 900;
+    line-height: 0.9;
+}
+
+.home-metric-value span {
+    font-size: 24px;
+}
+
+.home-metric-value small {
+    font-size: 18px;
+    margin-left: 3px;
+}
+
+.home-metric-card h2 {
+    font-size: 21px;
+    line-height: 1.1;
+    margin-top: 4px;
+}
+
+.home-metric-card a {
+    align-self: end;
+    color: #111;
+    font-size: 12px;
+    grid-column: 1 / 2;
+    line-height: 1;
+}
+
+.home-sensor-icon {
+    align-self: center;
+    justify-self: end;
+    position: relative;
+}
+
+.temp-icon {
+    /* border-bottom: 14px solid #4af65f;
+    border-top: 14px solid #4af65f; */
+    content: url('/assets/icon/SUdara.png');
+    height: 53px;
+    margin-right: 18px;
+    width: 68px;
+}
+
+.temp-icon::before {
+    background: #4af65f;
+    border-radius: 0 0 999px 999px;
+    content: "";
+    height: 17px;
+    left: 9px;
+    position: absolute;
+    top: -68px;
+    width: 44px;
+}
+
+.temp-icon::after {
+    background: #4af65f;
+    border-radius: 999px;
+    content: "";
+    height: 74px;
+    position: absolute;
+    right: -47px;
+    top: -21px;
+    width: 17px;
+}
+
+.temp-icon span {
+    background: #4af65f;
+    border-radius: 999px;
+    bottom: -19px;
+    height: 36px;
+    position: absolute;
+    right: -56px;
+    width: 36px;
+}
+
+.humidity-icon {
+    border: 12px solid #f4de1c;
+    border-bottom: 0;
+    border-left-color: transparent;
+    border-radius: 120px 120px 0 0;
+    height: 92px;
+    transform: rotate(8deg);
+    width: 124px;
+}
+
+.humidity-icon::before,
+.humidity-icon::after {
+    border: 12px solid #f4de1c;
+    border-bottom: 0;
+    border-left-color: transparent;
+    border-radius: 120px 120px 0 0;
+    content: "";
+    position: absolute;
+}
+
+.humidity-icon::before {
+    height: 63px;
+    left: 20px;
+    top: 21px;
+    width: 84px;
+}
+
+.humidity-icon::after {
+    height: 34px;
+    left: 49px;
+    top: 49px;
+    width: 42px;
+}
+
+.humidity-icon span {
+    background: #f4de1c;
+    border-radius: 999px;
+    bottom: -7px;
+    height: 31px;
+    position: absolute;
+    right: 4px;
+    width: 31px;
+}
+
+.home-alert-shell {
+    background: rgba(255, 255, 255, 0.86);
+    border-radius: 11px;
+    box-shadow: 0 18px 28px rgba(0, 0, 0, 0.16);
+    height: 477px;
+    margin-bottom: 19px;
+    padding: 53px 68px 60px;
+    width: 1282px;
+}
+
+.home-alert-card {
+    align-items: center;
+    background: #ff252b;
+    border-radius: 9px;
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.25);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 366px;
+    text-align: center;
+}
+
+.home-alert-card h1 {
+    font-size: 24px;
+    font-weight: 800;
+    margin-top: 12px;
+}
+
+.home-alert-card p,
+.home-alert-card strong {
+    font-size: 20px;
+    font-weight: 800;
+    margin-top: 8px;
+}
+
+.home-drop-off {
+    background: #fff;
+    border-radius: 999px 999px 999px 0;
+    height: 89px;
+    position: relative;
+    transform: rotate(-45deg);
+    width: 89px;
+}
+
+.home-drop-off::after {
+    background: #ff252b;
+    border-radius: 999px;
+    content: "";
+    height: 10px;
+    left: -21px;
+    position: absolute;
+    top: 38px;
+    transform: rotate(90deg);
+    width: 141px;
+}
+
+.home-legend {
+    padding-left: 18px;
+}
+
+.home-legend p {
+    align-items: center;
+    display: flex;
+    font-size: 16px;
+    gap: 8px;
+    margin-top: 12px;
+}
+
+.home-legend span {
+    display: inline-block;
+    height: 20px;
+    width: 20px;
+}
+
+.legend-critical {
+    background: #ff252b;
+}
+
+.legend-warning {
+    background: #fff46a;
+}
+
+.legend-safe {
+    background: #3ca044;
+}
+
+.home-footer {
+    background: #fff;
+    font-size: 16px;
+    padding: 10px;
+    position: relative;
+    text-align: center;
+    z-index: 1;
+}
+
+.home-bottom-nav {
+    display: none;
+}
+
+@media (max-width: 640px) {
+    .hydro-auth-shell {
+        justify-content: flex-start;
+        padding-top: 262px;
+    }
+
+    .hydro-card {
+        width: min(318px, calc(100vw - 40px));
+    }
+
+    .hydro-one-tap {
+        min-height: 386px;
+        padding: 42px 28px 30px;
+    }
+
+    .hydro-login-card {
+        padding: 43px 42px 39px;
+    }
+
+    .hydro-auth-page .hydro-brand {
+        font-size: 20px;
+    }
+
+    .hydro-auth-page .hydro-brand-mark {
+        height: 64px;
+        width: 205px;
+    }
+
+    .hydro-avatar {
+        font-size: 39px;
+        height: 126px;
+        width: 126px;
+    }
+
+    .hydro-profile-name,
+    .hydro-profile-hint,
+    .hydro-switch-account {
+        font-size: 13px;
+    }
+
+    .hydro-field label {
+        font-size: 12px;
+    }
+
+    .hydro-field input {
+        height: 45px;
+    }
+
+    .hydro-password-field button {
+        height: 45px;
+    }
+
+    .hydro-submit {
+        height: 26px;
+    }
+
+    .home-topbar {
+        border: 0;
+        grid-template-columns: 1fr auto;
+        height: 48px;
+        padding: 0 33px;
+    }
+
+    .home-brand .hydro-brand-mark {
+        height: 30px;
+        width: 100px;
+    }
+
+    .home-nav {
+        display: none;
+    }
+
+    .home-user-button {
+        height: 30px;
+        padding: 0 8px;
+    }
+
+    .home-user-button #dashboard-menu-name {
+        display: none;
+    }
+
+    .home-user-icon {
+        height: 26px;
+        width: 26px;
+    }
+
+    .home-chevron {
+        height: 16px;
+        margin-left: 4px;
+        width: 16px;
+    }
+
+    .home-dropdown {
+        right: 0;
+        top: 31px;
+        min-width: 108px;
+        padding: 10px 16px 10px 34px;
+    }
+
+    .home-dashboard {
+        min-height: calc(100vh - 94px);
+        padding: 53px 45px 84px;
+    }
+
+    .home-metrics {
+        gap: 43px;
+        grid-template-columns: 1fr;
+        margin-bottom: 64px;
+    }
+
+    .home-metric-card {
+        grid-template-columns: 1fr 88px;
+        height: 121px;
+        min-height: 121px;
+        padding: 22px 10px 10px 34px;
+        width: 100%;
+    }
+
+    .home-metric-card::after {
+        left: 34px;
+        width: 62%;
+    }
+
+    .home-metric-value {
+        font-size: 30px;
+    }
+
+    .home-metric-card h2 {
+        font-size: 23px;
+    }
+
+    .home-metric-card a {
+        font-size: 12px;
+    }
+
+    .temp-icon {
+        border-bottom-width: 9px;
+        border-top-width: 9px;
+        height: 38px;
+        margin-right: 22px;
+        width: 44px;
+    }
+
+    .temp-icon::before {
+        height: 13px;
+        left: 7px;
+        top: -48px;
+        width: 31px;
+    }
+
+    .temp-icon::after {
+        height: 53px;
+        right: -29px;
+        top: -15px;
+        width: 13px;
+    }
+
+    .temp-icon span {
+        bottom: -15px;
+        height: 25px;
+        right: -35px;
+        width: 25px;
+    }
+
+    .humidity-icon {
+        border-width: 8px;
+        border-bottom: 0;
+        height: 58px;
+        width: 82px;
+    }
+
+    .humidity-icon::before {
+        border-width: 8px;
+        border-bottom: 0;
+        height: 40px;
+        left: 12px;
+        top: 13px;
+        width: 56px;
+    }
+
+    .humidity-icon::after {
+        border-width: 8px;
+        border-bottom: 0;
+        height: 23px;
+        left: 31px;
+        top: 31px;
+        width: 31px;
+    }
+
+    .humidity-icon span {
+        bottom: -7px;
+        height: 22px;
+        right: 1px;
+        width: 22px;
+    }
+
+    .home-alert-shell {
+        border-radius: 10px;
+        height: auto;
+        margin-bottom: 0;
+        padding: 25px 31px;
+        width: 100%;
+    }
+
+    .home-alert-card {
+        border-radius: 10px;
+        min-height: 313px;
+        padding: 24px 18px;
+    }
+
+    .home-alert-card h1 {
+        font-size: 23px;
+    }
+
+    .home-alert-card p,
+    .home-alert-card strong {
+        font-size: 17px;
+    }
+
+    .home-drop-off {
+        height: 96px;
+        width: 96px;
+    }
+
+    .home-drop-off::after {
+        left: -23px;
+        top: 43px;
+        width: 151px;
+    }
+
+    .home-legend,
+    .home-footer {
+        display: none;
+    }
+
+    .home-bottom-nav {
+        align-items: center;
+        background: #fff;
+        bottom: 0;
+        display: flex;
+        height: 47px;
+        justify-content: space-around;
+        left: 0;
+        position: fixed;
+        right: 0;
+        z-index: 4;
+    }
+
+    .home-bottom-nav a {
+        align-items: center;
+        color: #9aa0a6;
+        display: flex;
+        height: 32px;
+        justify-content: center;
+        width: 32px;
+    }
+
+    .home-bottom-nav a.is-active {
+        background: #d8d8d8;
+        border-radius: 999px;
+        color: #111;
+    }
+
+    .home-bottom-nav svg {
+        height: 24px;
+        width: 24px;
+    }
+}
