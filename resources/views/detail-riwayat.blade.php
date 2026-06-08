@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>HYDROFARM Detail Riwayat</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
+
 <body class="hydro-dashboard-page min-h-screen text-black antialiased">
     <header class="home-topbar">
         <a href="/dashboard" class="hydro-brand home-brand" aria-label="HYDROFARM">
@@ -20,16 +22,20 @@
         </nav>
 
         <div class="home-user-menu">
-            <button id="dashboard-menu-button" type="button" class="home-user-button" aria-expanded="false" aria-controls="dashboard-dropdown">
+            <button id="dashboard-menu-button" type="button" class="home-user-button" aria-expanded="false"
+                aria-controls="dashboard-dropdown">
                 <span class="home-user-icon" aria-hidden="true">
                     <svg viewBox="0 0 24 24">
-                        <circle cx="12" cy="8" r="4" fill="none" stroke="currentColor" stroke-width="2"/>
-                        <path d="M4 21c1.6-4.3 4.2-6.5 8-6.5s6.4 2.2 8 6.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        <circle cx="12" cy="8" r="4" fill="none" stroke="currentColor"
+                            stroke-width="2" />
+                        <path d="M4 21c1.6-4.3 4.2-6.5 8-6.5s6.4 2.2 8 6.5" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" />
                     </svg>
                 </span>
                 <span id="dashboard-menu-name">Admin</span>
                 <svg class="home-chevron" viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="m6 9 6 6 6-6" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="m6 9 6 6 6-6" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"
+                        stroke-linejoin="round" />
                 </svg>
             </button>
 
@@ -37,15 +43,19 @@
                 <p id="dashboard-dropdown-name">Admin</p>
                 <a href="/profile" class="home-dropdown-item">
                     <svg viewBox="0 0 24 24" aria-hidden="true">
-                        <circle cx="12" cy="8" r="4" fill="none" stroke="currentColor" stroke-width="2"/>
-                        <path d="M4 21c1.6-4.3 4.2-6.5 8-6.5s6.4 2.2 8 6.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        <circle cx="12" cy="8" r="4" fill="none" stroke="currentColor"
+                            stroke-width="2" />
+                        <path d="M4 21c1.6-4.3 4.2-6.5 8-6.5s6.4 2.2 8 6.5" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" />
                     </svg>
                     Profile
                 </a>
                 <button id="dashboard-logout-button" type="button" class="home-dropdown-item">
                     <svg viewBox="0 0 24 24" aria-hidden="true">
-                        <path d="M10 6H5v12h5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M13 8l4 4-4 4M17 12H9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M10 6H5v12h5" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M13 8l4 4-4 4M17 12H9" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round" />
                     </svg>
                     Logout
                 </button>
@@ -55,56 +65,44 @@
 
     <main class="history-dashboard">
         <section class="history-heading">
-            <h1>Catatan Penyiraman Hari Ini</h1>
-            {{-- <label class="history-filter">
-                <span class="sr-only">Rentang riwayat</span>
-                <select>
-                    <option>7 Hari Terakhir</option>
-                    <option>14 Hari Terakhir</option>
-                    <option>30 Hari Terakhir</option>
-                </select>
-            </label> --}}
+            <h1 id="detail-title">Catatan Penyiraman ...</h1>
+            <a href="/riwayat" class="back-button">
+                &larr; Kembali ke Riwayat
+            </a>
         </section>
 
-        <section class="history-grid" aria-label="Catatan penyiraman">
-            @foreach (['07:00 WIB', '08:01 WIB', '09:21 WIB', '11:39 WIB', '14:56 WIB', '16:20 WIB'] as $day)
-                <article class="history-shell">
-                    <div class="history-card">
-                        <h2>{{ $day }}</h2>
-                        <div class="history-card-body">
-                            <div>
-                                <p>Penyiraman Selesai</p>
-                                <strong>Blok A, Blok D, Blok E</strong>
-                            </div>
-                            <img src="/assets/icons/riwayat/check.svg" alt="" aria-hidden="true">
-                        </div>
-                        <a href="#">Lihat Detail <span aria-hidden="true">&rarr;</span></a>
-                    </div>
-                </article>
-            @endforeach
-        </section>
+        <div class="history-grid" id="detail-grid">
+        </div>
     </main>
 
     <nav class="home-bottom-nav" aria-label="Navigasi mobile">
         <a href="/dashboard" aria-label="Beranda">
             <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M3 11.5 12 4l9 7.5" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M6.5 10.5V20h11v-9.5" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+                <path d="M3 11.5 12 4l9 7.5" fill="none" stroke="currentColor" stroke-width="2.5"
+                    stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M6.5 10.5V20h11v-9.5" fill="none" stroke="currentColor" stroke-width="2.5"
+                    stroke-linecap="round" />
             </svg>
         </a>
         <a href="/penyiraman" aria-label="Penyiraman">
             <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M12 3s6 6.4 6 11a6 6 0 0 1-12 0c0-4.6 6-11 6-11Z" fill="currentColor"/>
+                <path d="M12 3s6 6.4 6 11a6 6 0 0 1-12 0c0-4.6 6-11 6-11Z" fill="currentColor" />
             </svg>
         </a>
         <a href="/riwayat" class="is-active" aria-label="Riwayat">
             <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M4 12a8 8 0 1 0 2.4-5.7M4 5v5h5" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M12 8v5l3 2" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M4 12a8 8 0 1 0 2.4-5.7M4 5v5h5" fill="none" stroke="currentColor" stroke-width="2.5"
+                    stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M12 8v5l3 2" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                    stroke-linejoin="round" />
             </svg>
         </a>
     </nav>
 
     <footer class="home-footer">Copyright &copy; 2026 Hydrofarm All Rights Reserved.</footer>
+
+    {{-- scripts js --}}
+    @vite('resources/js/detail-riwayat.js')
 </body>
+
 </html>

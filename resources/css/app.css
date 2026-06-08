@@ -846,6 +846,7 @@ body {
     height: 190px;
     padding: 22px 27px 24px;
     width: 820px;
+    box-sizing: border-box;
     /* max-width: 1166px; */
 }
 
@@ -857,6 +858,8 @@ body {
     min-height: 143px;
     padding: 16px 15px 12px 20px;
     position: relative;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .history-card h2 {
@@ -905,6 +908,20 @@ body {
     position: absolute;
     right: 14px;
     text-decoration: none;
+}
+
+.back-button {
+    display: inline-block;
+    margin-top: 10px; /* Jarak sama judul */
+    font-size: 14px;
+    color: #555;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.back-button:hover {
+    color: #39a940; /* Warna hijau khas Hydrofarm pas di-hover */
+    text-decoration: underline;
 }
 
 /* =========================================================
@@ -1340,10 +1357,14 @@ body {
     .history-dashboard {
         padding: 76px 20px 78px;
         width: 100%;
+        box-sizing: border-box;
     }
 
     .history-heading h1 {
-        display: none;
+        display: block; /* Munculin lagi tulisannya */
+        font-size: 18px; /* Dikecilin dikit biar nggak kepanjangan di layar HP */
+        margin-bottom: 5px; /* Jarak biar nggak nempel ke tombol back */
+        color: #333;
     }
 
     .history-filter {
@@ -1375,12 +1396,15 @@ body {
         height: auto;
         padding: 15px 18px 16px;
         width: 100%;
+        box-sizing: border-box;
     }
 
     .history-card {
         border-radius: 8px;
         height: auto;
         padding: 15px 15px 35px 15px;
+        width: 100%;
+        box-sizing: border-box;
     }
 
     .history-card h2 {
@@ -1418,6 +1442,12 @@ body {
 
     .history-shell:nth-child(6) {
         display: none;
+    }
+
+    .back-button {
+        display: inline-block;
+        font-size: 13px; /* Disesuaikan sama tulisan judul */
+        color: #555;
     }
 
     /* MOBILE PROFILE */

@@ -24,6 +24,15 @@ const dashboardDropdown = document.querySelector('#dashboard-dropdown');
 const dashboardMenuName = document.querySelector('#dashboard-menu-name');
 const dashboardDropdownName = document.querySelector('#dashboard-dropdown-name');
 
+// --- TAMBAHAN UNTUK HALAMAN PROFILE ---
+const profilePageAvatar = document.querySelector('#profile-page-avatar');
+const profilePageName = document.querySelector('#profile-page-name');
+const profilePageEmail = document.querySelector('#profile-page-email');
+const profilePageFullName = document.querySelector('#profile-page-fullname');
+const profilePagePhone = document.querySelector('#profile-page-phone');
+const profilePageOneTapStatus = document.querySelector('#profile-page-onetap-status');
+// --------------------------------------
+
 function isFuture(value) {
     return value && new Date(value).getTime() > Date.now();
 }
@@ -150,7 +159,7 @@ async function logout(redirect = true) {
 
     if (token && isFuture(localStorage.getItem(authExpiresKey))) {
         try {
-            await requestJson('/api/auth/logout', {
+            await requestJson('/auth/logout', {
                 method: 'POST',
                 headers: {
                     Authorization: `Bearer ${token}`,
@@ -181,29 +190,32 @@ async function requireDashboardAuth() {
     }
 
     try {
-        const payload = await requestJson('/api/auth/me', {
+        const payload = await requestJson('/auth/me', {
             headers: {
                 Authorization: `Bearer ${token}`,
             },
         });
 
-        if (dashboardName) {
-            dashboardName.textContent = payload.user.name;
-        }
-
-        if (dashboardPhone) {
-            dashboardPhone.textContent = payload.user.phone_number || 'No handphone belum diisi';
-        }
-
-        if (dashboardMenuName) {
-            dashboardMenuName.textContent = payload.user.name || 'Admin';
-        }
-
-        if (dashboardDropdownName) {
-            dashboardDropdownName.textContent = payload.user.name || 'Admin';
-        }
-
+        if (dashboardName) dashboardName.textContent = payload.user.name;
+        if (dashboardPhone) dashboardPhone.textContent = payload.user.phone_number || 'No handphone belum diisi';
+        if (dashboardMenuName) dashboardMenuName.textContent = payload.user.name || 'Admin';
+        if (dashboardDropdownName) dashboardDropdownName.textContent = payload.user.name || 'Admin';
         renderAvatar(dashboardAvatar, payload.user);
+
+        // --- TAMBAHAN UNTUK HALAMAN PROFILE ---
+        if (profilePageName) profilePageName.textContent = payload.user.name || 'Pengguna';
+        if (profilePageEmail) profilePageEmail.textContent = payload.user.email || 'email@belumdiset.com';
+        if (profilePageFullName) profilePageFullName.textContent = payload.user.name || '-';
+        if (profilePagePhone) profilePagePhone.textContent = payload.user.phone_number || 'Belum ditambahkan';
+        if (profilePageOneTapStatus) {
+            profilePageOneTapStatus.textContent = payload.user.one_tap_token_hash ? 'Aktif (Sesi Persisten)' : 'Belum Aktif';
+        }
+        if (profilePageAvatar) {
+            // Karena fungsi renderAvatar lo udah bagus banget nanganin inisial dan foto, kita pake lagi aja
+            renderAvatar(profilePageAvatar, payload.user);
+        }
+        // --------------------------------------
+
         scheduleAutoLogout();
     } catch {
         await logout(true);
@@ -222,7 +234,7 @@ async function redirectIfAlreadyLoggedIn() {
     }
 
     try {
-        await requestJson('/api/auth/me', {
+        await requestJson('/auth/me', {
             headers: {
                 Authorization: `Bearer ${token}`,
             },
@@ -240,7 +252,7 @@ form?.addEventListener('submit', async (event) => {
     submitButton.textContent = 'Memproses...';
 
     try {
-        const payload = await requestJson('/api/auth/login', {
+        const payload = await requestJson('/auth/login', {
             method: 'POST',
             body: new FormData(form),
         });
@@ -262,7 +274,7 @@ oneTapButton?.addEventListener('click', async () => {
         const body = new FormData();
         body.append('one_tap_token', localStorage.getItem(oneTapTokenKey));
 
-        const payload = await requestJson('/api/auth/one-tap', {
+        const payload = await requestJson('/auth/one-tap', {
             method: 'POST',
             body,
         });
