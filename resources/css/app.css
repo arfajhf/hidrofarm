@@ -908,6 +908,107 @@ body {
 }
 
 /* =========================================================
+   PROFILE: halaman detail informasi profil pengguna
+   ========================================================= */
+
+.profile-dashboard {
+    flex: 1;
+    margin: 0 auto;
+    max-width: 1166px; /* Pas lurus sejajar halaman beranda/riwayat */
+    width: 100%;
+    padding: 119px 53px 36px; /* Padding kiri 53px sejajar Logo Navbar */
+    position: relative;
+    z-index: 1;
+    box-sizing: border-box;
+}
+
+.profile-heading h1 {
+    font-size: 24px;
+    font-weight: 800;
+    margin-bottom: 30px;
+}
+
+.profile-grid {
+    display: grid;
+    gap: 40px;
+    grid-template-columns: 350px 1fr; /* Kolom kiri ringkas, kolom kanan melar lebar */
+    align-items: start;
+}
+
+.profile-shell {
+    background: rgba(255, 255, 255, 0.72);
+    border-radius: 12px;
+    box-shadow: 0 17px 26px rgba(0, 0, 0, 0.15);
+    padding: 35px 30px;
+    box-sizing: border-box;
+}
+
+.profile-summary-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.profile-avatar-large {
+    align-items: center;
+    background: #c9c7c7;
+    border-radius: 999px;
+    display: flex;
+    font-size: 48px;
+    font-weight: 700;
+    height: 110px;
+    justify-content: center;
+    width: 110px;
+    margin-bottom: 18px;
+    color: #333;
+}
+
+.profile-summary-card h2 {
+    font-size: 20px;
+    font-weight: 800;
+    margin-bottom: 5px;
+}
+
+.profile-summary-card p {
+    font-size: 15px;
+    color: #555;
+}
+
+.profile-details-card {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+.profile-info-group {
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid #e2e8f0;
+    padding-bottom: 12px;
+}
+
+.profile-info-group:last-child {
+    border-bottom: 0;
+    padding-bottom: 0;
+}
+
+.profile-info-label {
+    font-size: 13px;
+    font-weight: 800;
+    color: #666;
+    margin-bottom: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.profile-info-value {
+    font-size: 17px;
+    font-weight: 700;
+    color: #000;
+}
+
+/* =========================================================
    RESPONSIVE MOBILE
    Semua pengaturan khusus layar maksimal 640px
    ========================================================= */
@@ -1103,12 +1204,27 @@ body {
 
     /* MOBILE: footer desktop disembunyikan */
 
-    .home-legend,
     .home-footer {
         display: none;
     }
 
+
     /* MOBILE BOTTOM NAVIGATION: fixed di bawah layar */
+    .home-legend{
+        display: block;
+        padding-left: 0; /* Biar rata kiri ngikutin kartu di atasnya */
+        margin-top: 25px;
+    }
+
+    .home-legend p {
+        font-size: 13px; /* Font agak dikecilin biar pas di HP */
+        margin-top: 8px;
+    }
+
+    .home-legend span {
+        height: 16px; /* Kotak warnanya dikecilin dikit */
+        width: 16px;
+    }
 
     .home-bottom-nav {
         align-items: center;
@@ -1214,7 +1330,9 @@ body {
     }
 
     .irrigation-legend {
-        display: none;
+        display: block; /* Balikin biar muncul */
+        margin-top: 30px; /* Ngasih jarak dari kotak hijau (Kondisi Aman) */
+        padding-bottom: 30px; /* Jarak aman biar gak ketutup menu bawah */
     }
 
     /* MOBILE RIWAYAT */
@@ -1301,4 +1419,46 @@ body {
     .history-shell:nth-child(6) {
         display: none;
     }
+
+    /* MOBILE PROFILE */
+
+    .profile-dashboard {
+        padding: 100px 45px 86px;
+        width: 100%;
+    }
+
+    .profile-heading h1 {
+        font-size: 22px;
+        margin-bottom: 20px;
+    }
+
+    .profile-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .profile-shell {
+        padding: 25px 20px;
+        width: 100%;
+    }
+
+    .profile-avatar-large {
+        height: 90px;
+        width: 90px;
+        font-size: 38px;
+    }
+
+    .profile-summary-card h2 {
+        font-size: 18px;
+    }
+
+    .profile-info-label {
+        font-size: 11px;
+    }
+
+    .profile-info-value {
+        font-size: 15px;
+    }
 }
+

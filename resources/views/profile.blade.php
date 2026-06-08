@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>HYDROFARM Dashboard</title>
+    <title>HYDROFARM Profile</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="hydro-dashboard-page min-h-screen text-black antialiased">
@@ -14,7 +14,7 @@
         </a>
 
         <nav class="home-nav" aria-label="Navigasi utama">
-            <a href="/dashboard" class="is-active">Beranda</a>
+            <a href="/dashboard">Beranda</a>
             <a href="/penyiraman">Penyiraman</a>
             <a href="/riwayat">Riwayat</a>
         </nav>
@@ -35,7 +35,7 @@
 
             <div id="dashboard-dropdown" class="home-dropdown hidden">
                 <p id="dashboard-dropdown-name">Admin</p>
-                <a href="/profile" class="home-dropdown-item">
+                <a href="/profile" class="home-dropdown-item is-active">
                     <svg viewBox="0 0 24 24" aria-hidden="true">
                         <circle cx="12" cy="8" r="4" fill="none" stroke="currentColor" stroke-width="2"/>
                         <path d="M4 21c1.6-4.3 4.2-6.5 8-6.5s6.4 2.2 8 6.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
@@ -53,45 +53,45 @@
         </div>
     </header>
 
-    <main class="home-dashboard">
-        <section class="home-metrics" aria-label="Ringkasan sensor">
-            <article class="home-metric-card metric-temp">
-                <div>
-                    <p class="home-metric-value">20<span>&deg;</span><small>c</small></p>
-                    <h2>Suhu Udara</h2>
-                </div>
-                <img class="home-sensor-icon temp-icon" src="/assets/icons/SUdara.png" alt="" aria-hidden="true">
-                <a href="#">Lihat Keseluruhan &gt;</a>
-            </article>
-
-            <article class="home-metric-card metric-humidity">
-                <div>
-                    <p class="home-metric-value">30%</p>
-                    <h2>Kelembaban Tanah</h2>
-                </div>
-                <img class="home-sensor-icon humidity-icon" src="/assets/icons/KTanah.png" alt="" aria-hidden="true">
-                <a href="#">Lihat Keseluruhan &gt;</a>
-            </article>
+    <main class="profile-dashboard">
+        <section class="profile-heading">
+            <h1>Profil Pengguna</h1>
         </section>
 
-        <section class="home-alert-shell" aria-label="Status penyiraman">
-            <div class="home-alert-card">
-                <img class="home-drop-off" src="/assets/icons/darurat.svg" alt="" aria-hidden="true">
-                <h1>Kondisi Kritis</h1>
-                <p>Siram Blok Berikut</p>
-                <strong>Blok A, Blok B, Blok C</strong>
-            </div>
-        </section>
+        <section class="profile-grid">
+            <article class="profile-shell profile-left-shell">
+                <div class="profile-summary-card">
+                    <div class="profile-avatar-large">P</div>
+                    <h2>Nama Pengguna</h2>
+                    <p>Pengelola Lahan Hydrofarm</p>
+                </div>
+            </article>
 
-        <section class="home-legend" aria-label="Keterangan kondisi">
-            <p><span class="legend-critical"></span>Kondisi Kritis</p>
-            <p><span class="legend-warning"></span>Kondisi Kurang Aman</p>
-            <p><span class="legend-safe"></span>Kondisi Aman</p>
+            <article class="profile-shell profile-right-shell">
+                <div class="profile-details-card">
+                    <div class="profile-info-group">
+                        <span class="profile-info-label">Nama Lengkap</span>
+                        <span class="profile-info-value">Abah Udin</span>
+                    </div>
+                    <div class="profile-info-group">
+                        <span class="profile-info-label">Peran</span>
+                        <span class="profile-info-value">Petani</span>
+                    </div>
+                    <div class="profile-info-group">
+                        <span class="profile-info-label">Cakupan Blok Terkontrol</span>
+                        <span class="profile-info-value">Blok A, Blok B, Blok C, Blok D, Blok E, Blok F, Blok G</span>
+                    </div>
+                    <div class="profile-info-group">
+                        <span class="profile-info-label">Metode Masuk</span>
+                        <span class="profile-info-value">Satu Ketukan (One-Tap Sesi Persisten)</span>
+                    </div>
+                </div>
+            </article>
         </section>
     </main>
 
     <nav class="home-bottom-nav" aria-label="Navigasi mobile">
-        <a href="/dashboard" class="is-active" aria-label="Beranda">
+        <a href="/dashboard" aria-label="Beranda">
             <svg viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M3 11.5 12 4l9 7.5" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
                 <path d="M6.5 10.5V20h11v-9.5" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>

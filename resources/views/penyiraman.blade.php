@@ -35,7 +35,7 @@
 
             <div id="dashboard-dropdown" class="home-dropdown hidden">
                 <p id="dashboard-dropdown-name">Admin</p>
-                <a href="#" class="home-dropdown-item">
+                <a href="/profile" class="home-dropdown-item">
                     <svg viewBox="0 0 24 24" aria-hidden="true">
                         <circle cx="12" cy="8" r="4" fill="none" stroke="currentColor" stroke-width="2"/>
                         <path d="M4 21c1.6-4.3 4.2-6.5 8-6.5s6.4 2.2 8 6.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>

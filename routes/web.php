@@ -21,3 +21,11 @@ Route::get('/penyiraman', function () {
 Route::get('/riwayat', function () {
     return view('riwayat');
 });
+
+Route::get('/detail-riwayat', function () {
+    return view('detail-riwayat');
+});
+
+Route::get('/profile', function () {
+    return view('profile');
+});
