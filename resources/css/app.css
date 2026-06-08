@@ -1,6 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Inclusive+Sans:ital,wght@0,300..700;1,300..700&display=swap');
 @import 'tailwindcss';
 
+/* =========================================================
+   GLOBAL: sumber Tailwind, font, dan utility umum
+   ========================================================= */
+
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
 
@@ -17,11 +21,20 @@ body {
     display: none !important;
 }
 
+/* =========================================================
+   LAYOUT DASAR: background halaman auth dan aplikasi
+   ========================================================= */
 
 .hydro-auth-page,
 .hydro-dashboard-page {
     background-color: #d8d8d8;
     position: relative;
+}
+
+.hydro-dashboard-page {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 .hydro-auth-page::before,
@@ -50,6 +63,10 @@ body {
     position: relative;
     z-index: 1;
 }
+
+/* =========================================================
+   AUTH: halaman login biasa dan one-tap login
+   ========================================================= */
 
 .hydro-auth-shell {
     align-items: center;
@@ -262,6 +279,11 @@ body {
     opacity: 0.7;
 }
 
+/* =========================================================
+   NAVBAR APLIKASI: logo, menu desktop, user, dan dropdown
+   Dipakai oleh Home, Penyiraman, dan Riwayat
+   ========================================================= */
+
 .home-topbar {
     align-items: center;
     background: #fff;
@@ -269,8 +291,11 @@ body {
     display: grid;
     grid-template-columns: 260px 1fr 260px;
     height: 69px;
+    left: 0;
     padding: 0 53px;
-    position: relative;
+    position: fixed;
+    right: 0;
+    top: 0;
     z-index: 3;
 }
 
@@ -360,20 +385,28 @@ body {
     white-space: nowrap;
 }
 
+/* =========================================================
+   HOME / BERANDA: layout utama dan kartu sensor
+   ========================================================= */
+
 .home-dashboard {
+    flex: 1;
     margin: 0 auto;
-    max-width: 1282px;
-    min-height: calc(100vh - 103px);
-    padding: 50px 0 36px;
+    /* min-width: 1282px; */
+    /* min-width: 1382px; */
+    width: 100%;
+    padding: 119px 100px 36px;
     position: relative;
     z-index: 1;
+    /* width: min(1282px, calc(100vw - 106px)); */
+    box-sizing: border-box;
 }
 
 .home-metrics {
     display: grid;
-    gap: 175.9px;
-    grid-template-columns: 553.05px 553.05px;
-    justify-content: center;
+    gap: 60px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    justify-content: flex-start;
     margin-bottom: 86px;
 }
 
@@ -386,7 +419,9 @@ body {
     height: 149px;
     padding: 28px 18px 10px 47px;
     position: relative;
-    width: 553.05px;
+    width: 100%;
+    max-width: 800px;
+    border: 1px solid #000;
 }
 
 .home-metric-card::before,
@@ -404,8 +439,7 @@ body {
 }
 
 .home-metric-card::after {
-    left: 18px;
-    width: 65%;
+    content: none;
 }
 
 .metric-temp::before,
@@ -448,103 +482,47 @@ body {
 }
 
 .home-metric-card a {
-    align-self: end;
+    border-top: 3px solid;
+    bottom: 8px;
     color: #111;
     font-size: 12px;
-    grid-column: 1 / 2;
     line-height: 1;
+    left: 18px;
+    padding: 5px 28px 0;
+    position: absolute;
+    right: 168px;
+    text-align: left;
+}
+
+.metric-temp a {
+    border-color: #39f04e;
+}
+
+.metric-humidity a {
+    border-color: #f4de1c;
 }
 
 .home-sensor-icon {
     align-self: center;
     justify-self: end;
-    position: relative;
+    object-fit: contain;
 }
 
 .temp-icon {
-    /* border-bottom: 14px solid #4af65f;
-    border-top: 14px solid #4af65f; */
-    content: url('/assets/icon/SUdara.png');
-    height: 53px;
-    margin-right: 18px;
-    width: 68px;
-}
-
-.temp-icon::before {
-    background: #4af65f;
-    border-radius: 0 0 999px 999px;
-    content: "";
-    height: 17px;
-    left: 9px;
-    position: absolute;
-    top: -68px;
-    width: 44px;
-}
-
-.temp-icon::after {
-    background: #4af65f;
-    border-radius: 999px;
-    content: "";
-    height: 74px;
-    position: absolute;
-    right: -47px;
-    top: -21px;
-    width: 17px;
-}
-
-.temp-icon span {
-    background: #4af65f;
-    border-radius: 999px;
-    bottom: -19px;
-    height: 36px;
-    position: absolute;
-    right: -56px;
-    width: 36px;
+    height: 121px;
+    margin-right: -3px;
+    margin-top: -12px;
+    width: 121px;
 }
 
 .humidity-icon {
-    border: 12px solid #f4de1c;
-    border-bottom: 0;
-    border-left-color: transparent;
-    border-radius: 120px 120px 0 0;
-    height: 92px;
-    transform: rotate(8deg);
-    width: 124px;
+    height: 111px;
+    margin-right: -2px;
+    margin-top: -9px;
+    width: 136px;
 }
 
-.humidity-icon::before,
-.humidity-icon::after {
-    border: 12px solid #f4de1c;
-    border-bottom: 0;
-    border-left-color: transparent;
-    border-radius: 120px 120px 0 0;
-    content: "";
-    position: absolute;
-}
-
-.humidity-icon::before {
-    height: 63px;
-    left: 20px;
-    top: 21px;
-    width: 84px;
-}
-
-.humidity-icon::after {
-    height: 34px;
-    left: 49px;
-    top: 49px;
-    width: 42px;
-}
-
-.humidity-icon span {
-    background: #f4de1c;
-    border-radius: 999px;
-    bottom: -7px;
-    height: 31px;
-    position: absolute;
-    right: 4px;
-    width: 31px;
-}
+/* HOME: kartu peringatan kondisi kritis */
 
 .home-alert-shell {
     background: rgba(255, 255, 255, 0.86);
@@ -553,7 +531,10 @@ body {
     height: 477px;
     margin-bottom: 19px;
     padding: 53px 68px 60px;
-    width: 1282px;
+    width: 100%;
+    max-width: 2282px;
+    /* max-width: 1282px; */
+    box-sizing: border-box;
 }
 
 .home-alert-card {
@@ -583,25 +564,12 @@ body {
 }
 
 .home-drop-off {
-    background: #fff;
-    border-radius: 999px 999px 999px 0;
-    height: 89px;
-    position: relative;
-    transform: rotate(-45deg);
-    width: 89px;
+    height: 112px;
+    object-fit: contain;
+    width: 112px;
 }
 
-.home-drop-off::after {
-    background: #ff252b;
-    border-radius: 999px;
-    content: "";
-    height: 10px;
-    left: -21px;
-    position: absolute;
-    top: 38px;
-    transform: rotate(90deg);
-    width: 141px;
-}
+/* HOME: legenda status kondisi */
 
 .home-legend {
     padding-left: 18px;
@@ -633,9 +601,15 @@ body {
     background: #3ca044;
 }
 
+/* =========================================================
+   FOOTER DAN BOTTOM NAVIGATION
+   Footer untuk desktop, bottom navigation untuk mobile
+   ========================================================= */
+
 .home-footer {
     background: #fff;
     font-size: 16px;
+    margin-top: auto;
     padding: 10px;
     position: relative;
     text-align: center;
@@ -646,7 +620,281 @@ body {
     display: none;
 }
 
+/* =========================================================
+   PENYIRAMAN: kartu kritis, kurang aman, dan aman
+   ========================================================= */
+
+.irrigation-dashboard {
+    flex: 1;
+    margin: 0 auto;
+    max-width: 1138px;
+    padding: 183px 53px 32px;
+    position: relative;
+    width: min(1138px, calc(100vw - 106px));
+    z-index: 1;
+    box-sizing: border-box;
+}
+
+.irrigation-grid {
+    align-items: start;
+    display: grid;
+    gap: 40px;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.irrigation-secondary {
+    display: flex;
+    flex-direction: column;
+    gap: 80px;
+}
+
+.irrigation-shell {
+    background: rgba(255, 255, 255, 0.72);
+    border-radius: 12px;
+    box-shadow: 0 17px 26px rgba(0, 0, 0, 0.15);
+    padding: 21px 27px 23px;
+}
+
+.irrigation-critical-shell {
+    padding: 22px 28px 31px;
+}
+
+.irrigation-card {
+    align-items: center;
+    border-radius: 9px;
+    box-shadow: 0 6px 9px rgba(0, 0, 0, 0.26);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+.irrigation-card img {
+    object-fit: contain;
+}
+
+.irrigation-critical {
+    background: #ff252b;
+    color: #fff;
+    height: 401px;
+    padding: 25px;
+}
+
+.irrigation-critical img {
+    height: 157px;
+    margin-bottom: 30px;
+    width: 157px;
+}
+
+.irrigation-critical h1 {
+    font-size: 31px;
+    font-weight: 800;
+    line-height: 1.1;
+}
+
+.irrigation-critical p,
+.irrigation-critical strong {
+    font-size: 30px;
+    font-weight: 800;
+    line-height: 1.15;
+    margin-top: 5px;
+}
+
+.irrigation-warning,
+.irrigation-safe {
+    height: 143px;
+    padding: 12px 20px;
+}
+
+.irrigation-warning {
+    background: #fff475;
+    color: #5f090f;
+}
+
+.irrigation-safe {
+    background: #39a940;
+    color: #fff;
+}
+
+.irrigation-warning img {
+    height: 50px;
+    margin-bottom: 3px;
+    width: 50px;
+}
+
+.irrigation-safe img {
+    height: 52px;
+    margin-bottom: 3px;
+    width: 52px;
+}
+
+.irrigation-warning h2,
+.irrigation-safe h2 {
+    font-size: 16px;
+    font-weight: 800;
+    line-height: 1.05;
+}
+
+.irrigation-warning p,
+.irrigation-warning strong,
+.irrigation-safe strong {
+    font-size: 15px;
+    font-weight: 800;
+    line-height: 1.1;
+}
+
+.irrigation-legend {
+    margin-top: 115px;
+}
+
+/* =========================================================
+   RIWAYAT: filter waktu dan daftar catatan penyiraman
+   ========================================================= */
+
+/* .history-dashboard {
+    flex: 1;
+    margin: 0 auto;
+    max-width: 1166px;
+    padding: 119px 53px 75px;
+    position: relative;
+    width: min(1170px, calc(100vw - 106px));
+    z-index: 1;
+    box-sizing: border-box;
+} */
+.history-dashboard {
+    flex: 1;
+    margin: 0 auto;
+    /* min-width: 1282px; */
+    /* min-width: 1382px; */
+    width: 100%;
+    padding: 119px 100px 36px;
+    position: relative;
+    z-index: 1;
+    /* width: min(1282px, calc(100vw - 106px)); */
+    box-sizing: border-box;
+}
+
+.history-heading h1 {
+    font-size: 24px;
+    font-weight: 800;
+}
+
+.history-filter {
+    display: block;
+    margin-top: 18px;
+    position: relative;
+    width: 143px;
+}
+
+.history-filter::after {
+    border-bottom: 2px solid #111;
+    border-right: 2px solid #111;
+    content: "";
+    height: 8px;
+    pointer-events: none;
+    position: absolute;
+    right: 10px;
+    top: 8px;
+    transform: rotate(45deg);
+    width: 8px;
+}
+
+.history-filter select {
+    appearance: none;
+    background: transparent;
+    border: 0;
+    color: #222;
+    font-family: inherit;
+    font-size: 14px;
+    outline: 0;
+    padding: 0 27px 0 12px;
+    width: 100%;
+}
+
+.history-grid {
+    display: grid;
+    gap: 30px 50px;
+    grid-template-columns: 1fr 1fr;
+    margin-top: 29px;
+    max-width: 1166px;
+}
+
+.history-shell {
+    background: rgba(255, 255, 255, 0.65);
+    border-radius: 11px;
+    box-shadow: 0 16px 25px rgba(0, 0, 0, 0.13);
+    height: 190px;
+    padding: 22px 27px 24px;
+    width: 820px;
+    /* max-width: 1166px; */
+}
+
+.history-card {
+    background: #39a940;
+    border-radius: 8px;
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.24);
+    color: #fff;
+    min-height: 143px;
+    padding: 16px 15px 12px 20px;
+    position: relative;
+}
+
+.history-card h2 {
+    border-bottom: 2px solid rgba(255, 255, 255, 0.95);
+    font-size: 14px;
+    font-weight: 800;
+    line-height: 1;
+    padding-bottom: 8px;
+    width: 65%;
+}
+
+.history-card-body {
+    display: block; /* Cabut sistem flexbox-nya */
+    margin-top: 25px;
+    width: 75%; /* Tahan teksnya biar gak bablas ke kanan nabrak ikon */
+}
+
+.history-card-body p,
+.history-card-body strong {
+    display: block;
+    font-size: 18px;
+    font-weight: 800;
+    line-height: 1.15;
+}
+
+.history-card-body strong {
+    margin-top: 10px;
+}
+
+.history-card-body img {
+    position: absolute;
+    right: 25px; /* Jarak dari pinggir kanan */
+    top: 50%; /* Tarik ke tengah-tengah kartu */
+    transform: translateY(-50%); /* Kunci paksa posisinya biar presisi di tengah vertikal */
+    height: 65px;
+    width: 65px;
+    margin: 0; /* Buang semua tarikan margin bawaan */
+    object-fit: contain;
+}
+
+.history-card a {
+    bottom: 10px;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 800;
+    position: absolute;
+    right: 14px;
+    text-decoration: none;
+}
+
+/* =========================================================
+   RESPONSIVE MOBILE
+   Semua pengaturan khusus layar maksimal 640px
+   ========================================================= */
+
 @media (max-width: 640px) {
+    /* MOBILE AUTH: login dan one-tap */
+
     .hydro-auth-shell {
         justify-content: flex-start;
         padding-top: 262px;
@@ -702,6 +950,8 @@ body {
         height: 26px;
     }
 
+    /* MOBILE NAVBAR ATAS: selalu fixed */
+
     .home-topbar {
         border: 0;
         grid-template-columns: 1fr auto;
@@ -745,9 +995,10 @@ body {
         padding: 10px 16px 10px 34px;
     }
 
+    /* MOBILE HOME: kartu sensor suhu dan kelembaban */
+
     .home-dashboard {
-        min-height: calc(100vh - 94px);
-        padding: 53px 45px 84px;
+        padding: 101px 45px 84px;
     }
 
     .home-metrics {
@@ -764,83 +1015,43 @@ body {
         width: 100%;
     }
 
-    .home-metric-card::after {
-        left: 34px;
-        width: 62%;
-    }
-
     .home-metric-value {
         font-size: 30px;
     }
 
     .home-metric-card h2 {
-        font-size: 23px;
+        font-size: 21px;
+        line-height: 1.05;
+        white-space: nowrap;
+    }
+
+    .metric-humidity h2 {
+        font-size: 19px;
     }
 
     .home-metric-card a {
+        bottom: 7px;
         font-size: 12px;
+        left: 34px;
+        padding: 5px 0 0;
+        right: 94px;
     }
 
     .temp-icon {
-        border-bottom-width: 9px;
-        border-top-width: 9px;
-        height: 38px;
-        margin-right: 22px;
-        width: 44px;
-    }
-
-    .temp-icon::before {
-        height: 13px;
-        left: 7px;
-        top: -48px;
-        width: 31px;
-    }
-
-    .temp-icon::after {
-        height: 53px;
-        right: -29px;
-        top: -15px;
-        width: 13px;
-    }
-
-    .temp-icon span {
-        bottom: -15px;
-        height: 25px;
-        right: -35px;
-        width: 25px;
+        height: 79px;
+        margin-right: -1px;
+        margin-top: -9px;
+        width: 79px;
     }
 
     .humidity-icon {
-        border-width: 8px;
-        border-bottom: 0;
-        height: 58px;
-        width: 82px;
+        height: 70px;
+        margin-right: -1px;
+        margin-top: -5px;
+        width: 86px;
     }
 
-    .humidity-icon::before {
-        border-width: 8px;
-        border-bottom: 0;
-        height: 40px;
-        left: 12px;
-        top: 13px;
-        width: 56px;
-    }
-
-    .humidity-icon::after {
-        border-width: 8px;
-        border-bottom: 0;
-        height: 23px;
-        left: 31px;
-        top: 31px;
-        width: 31px;
-    }
-
-    .humidity-icon span {
-        bottom: -7px;
-        height: 22px;
-        right: 1px;
-        width: 22px;
-    }
+    /* MOBILE HOME: kartu kondisi kritis */
 
     .home-alert-shell {
         border-radius: 10px;
@@ -866,20 +1077,18 @@ body {
     }
 
     .home-drop-off {
-        height: 96px;
-        width: 96px;
+        height: 104px;
+        width: 104px;
     }
 
-    .home-drop-off::after {
-        left: -23px;
-        top: 43px;
-        width: 151px;
-    }
+    /* MOBILE: footer desktop disembunyikan */
 
     .home-legend,
     .home-footer {
         display: none;
     }
+
+    /* MOBILE BOTTOM NAVIGATION: fixed di bawah layar */
 
     .home-bottom-nav {
         align-items: center;
@@ -912,5 +1121,165 @@ body {
     .home-bottom-nav svg {
         height: 24px;
         width: 24px;
+    }
+
+    /* MOBILE PENYIRAMAN */
+
+    .irrigation-dashboard {
+        padding: 100px 46px 86px;
+        width: 100%;
+    }
+
+    .irrigation-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 21px;
+    }
+
+    .irrigation-secondary {
+        gap: 21px;
+        width: 100%;
+    }
+
+    .irrigation-shell,
+    .irrigation-critical-shell {
+        border-radius: 12px;
+        padding: 23px 30px 25px;
+        width: 100%;
+    }
+
+    .irrigation-critical {
+        height: 313px;
+        padding: 24px 16px;
+    }
+
+    .irrigation-critical img {
+        height: 119px;
+        margin-bottom: 20px;
+        width: 119px;
+    }
+
+    .irrigation-critical h1 {
+        font-size: 22px;
+    }
+
+    .irrigation-critical p,
+    .irrigation-critical strong {
+        font-size: 17px;
+        margin-top: 8px;
+    }
+
+    .irrigation-warning,
+    .irrigation-safe {
+        height: 115px;
+        padding: 9px 13px;
+    }
+
+    .irrigation-warning img,
+    .irrigation-safe img {
+        height: 42px;
+        margin-bottom: 2px;
+        width: 42px;
+    }
+
+    .irrigation-warning h2,
+    .irrigation-safe h2 {
+        font-size: 14px;
+    }
+
+    .irrigation-warning p,
+    .irrigation-warning strong,
+    .irrigation-safe strong {
+        font-size: 12px;
+    }
+
+    .irrigation-legend {
+        display: none;
+    }
+
+    /* MOBILE RIWAYAT */
+
+    .history-dashboard {
+        padding: 76px 20px 78px;
+        width: 100%;
+    }
+
+    .history-heading h1 {
+        display: none;
+    }
+
+    .history-filter {
+        margin: 0 0 27px;
+        width: 119px;
+    }
+
+    .history-filter::after {
+        height: 7px;
+        right: 3px;
+        top: 5px;
+        width: 7px;
+    }
+
+    .history-filter select {
+        font-size: 12px;
+        padding-left: 4px;
+        padding-right: 20px;
+    }
+
+    .history-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        margin-top: 0;
+    }
+
+    .history-shell {
+        border-radius: 11px;
+        height: auto;
+        padding: 15px 18px 16px;
+        width: 100%;
+    }
+
+    .history-card {
+        border-radius: 8px;
+        height: auto;
+        padding: 15px 15px 35px 15px;
+    }
+
+    .history-card h2 {
+        font-size: 12px;
+        padding-bottom: 8px;
+        width: 72%;
+    }
+
+    .history-card-body {
+        margin-top: 17px;
+        width: 70%;
+    }
+
+    .history-card-body p,
+    .history-card-body strong {
+        font-size: 13px;
+        line-height: 1.3;
+    }
+
+    .history-card-body strong {
+        margin-top: 6px;
+    }
+
+    .history-card-body img {
+        height: 45px; /* Ikon dikecilin proporsional buat HP */
+        width: 45px;
+        right: 15px;
+    }
+
+    .history-card a {
+        bottom: 7px;
+        font-size: 12px;
+        right: 8px;
+    }
+
+    .history-shell:nth-child(6) {
+        display: none;
     }
 }

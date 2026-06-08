@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>HYDROFARM Dashboard</title>
+    <title>HYDROFARM Riwayat</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="hydro-dashboard-page min-h-screen text-black antialiased">
@@ -14,9 +14,9 @@
         </a>
 
         <nav class="home-nav" aria-label="Navigasi utama">
-            <a href="/dashboard" class="is-active">Beranda</a>
+            <a href="/dashboard">Beranda</a>
             <a href="/penyiraman">Penyiraman</a>
-            <a href="/riwayat">Riwayat</a>
+            <a href="/riwayat" class="is-active">Riwayat</a>
         </nav>
 
         <div class="home-user-menu">
@@ -53,45 +53,40 @@
         </div>
     </header>
 
-    <main class="home-dashboard">
-        <section class="home-metrics" aria-label="Ringkasan sensor">
-            <article class="home-metric-card metric-temp">
-                <div>
-                    <p class="home-metric-value">20<span>&deg;</span><small>c</small></p>
-                    <h2>Suhu Udara</h2>
-                </div>
-                <img class="home-sensor-icon temp-icon" src="/assets/icons/SUdara.png" alt="" aria-hidden="true">
-                <a href="#">Lihat Keseluruhan &gt;</a>
-            </article>
-
-            <article class="home-metric-card metric-humidity">
-                <div>
-                    <p class="home-metric-value">30%</p>
-                    <h2>Kelembaban Tanah</h2>
-                </div>
-                <img class="home-sensor-icon humidity-icon" src="/assets/icons/KTanah.png" alt="" aria-hidden="true">
-                <a href="#">Lihat Keseluruhan &gt;</a>
-            </article>
+    <main class="history-dashboard">
+        <section class="history-heading">
+            <h1>Catatan Penyiraman Terakhir</h1>
+            <label class="history-filter">
+                <span class="sr-only">Rentang riwayat</span>
+                <select>
+                    <option>7 Hari Terakhir</option>
+                    <option>14 Hari Terakhir</option>
+                    <option>30 Hari Terakhir</option>
+                </select>
+            </label>
         </section>
 
-        <section class="home-alert-shell" aria-label="Status penyiraman">
-            <div class="home-alert-card">
-                <img class="home-drop-off" src="/assets/icons/darurat.svg" alt="" aria-hidden="true">
-                <h1>Kondisi Kritis</h1>
-                <p>Siram Blok Berikut</p>
-                <strong>Blok A, Blok B, Blok C</strong>
-            </div>
-        </section>
-
-        <section class="home-legend" aria-label="Keterangan kondisi">
-            <p><span class="legend-critical"></span>Kondisi Kritis</p>
-            <p><span class="legend-warning"></span>Kondisi Kurang Aman</p>
-            <p><span class="legend-safe"></span>Kondisi Aman</p>
+        <section class="history-grid" aria-label="Catatan penyiraman">
+            @foreach (['Hari Ini', 'Kemarin', 'Jum\'at', 'Kamis', 'Rabu', 'Selasa'] as $day)
+                <article class="history-shell">
+                    <div class="history-card">
+                        <h2>{{ $day }}</h2>
+                        <div class="history-card-body">
+                            <div>
+                                <p>Penyiraman Selesai</p>
+                                <strong>Blok A, Blok D, Blok E</strong>
+                            </div>
+                            <img src="/assets/icons/riwayat/check.svg" alt="" aria-hidden="true">
+                        </div>
+                        <a href="#">Lihat Detail <span aria-hidden="true">&rarr;</span></a>
+                    </div>
+                </article>
+            @endforeach
         </section>
     </main>
 
     <nav class="home-bottom-nav" aria-label="Navigasi mobile">
-        <a href="/dashboard" class="is-active" aria-label="Beranda">
+        <a href="/dashboard" aria-label="Beranda">
             <svg viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M3 11.5 12 4l9 7.5" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
                 <path d="M6.5 10.5V20h11v-9.5" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
@@ -102,7 +97,7 @@
                 <path d="M12 3s6 6.4 6 11a6 6 0 0 1-12 0c0-4.6 6-11 6-11Z" fill="currentColor"/>
             </svg>
         </a>
-        <a href="/riwayat" aria-label="Riwayat">
+        <a href="/riwayat" class="is-active" aria-label="Riwayat">
             <svg viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M4 12a8 8 0 1 0 2.4-5.7M4 5v5h5" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
                 <path d="M12 8v5l3 2" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>

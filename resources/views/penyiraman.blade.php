@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>HYDROFARM Dashboard</title>
+    <title>HYDROFARM Penyiraman</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="hydro-dashboard-page min-h-screen text-black antialiased">
@@ -14,8 +14,8 @@
         </a>
 
         <nav class="home-nav" aria-label="Navigasi utama">
-            <a href="/dashboard" class="is-active">Beranda</a>
-            <a href="/penyiraman">Penyiraman</a>
+            <a href="/dashboard">Beranda</a>
+            <a href="/penyiraman" class="is-active">Penyiraman</a>
             <a href="/riwayat">Riwayat</a>
         </nav>
 
@@ -53,37 +53,38 @@
         </div>
     </header>
 
-    <main class="home-dashboard">
-        <section class="home-metrics" aria-label="Ringkasan sensor">
-            <article class="home-metric-card metric-temp">
-                <div>
-                    <p class="home-metric-value">20<span>&deg;</span><small>c</small></p>
-                    <h2>Suhu Udara</h2>
+    <main class="irrigation-dashboard">
+        <section class="irrigation-grid" aria-label="Status penyiraman blok">
+            <article class="irrigation-shell irrigation-critical-shell">
+                <div class="irrigation-card irrigation-critical">
+                    <img src="/assets/icons/darurat.svg" alt="" aria-hidden="true">
+                    <h1>Kondisi Kritis</h1>
+                    <p>Siram Blok Berikut</p>
+                    <strong>Blok A, Blok B, Blok C</strong>
                 </div>
-                <img class="home-sensor-icon temp-icon" src="/assets/icons/SUdara.png" alt="" aria-hidden="true">
-                <a href="#">Lihat Keseluruhan &gt;</a>
             </article>
 
-            <article class="home-metric-card metric-humidity">
-                <div>
-                    <p class="home-metric-value">30%</p>
-                    <h2>Kelembaban Tanah</h2>
-                </div>
-                <img class="home-sensor-icon humidity-icon" src="/assets/icons/KTanah.png" alt="" aria-hidden="true">
-                <a href="#">Lihat Keseluruhan &gt;</a>
-            </article>
-        </section>
+            <div class="irrigation-secondary">
+                <article class="irrigation-shell">
+                    <div class="irrigation-card irrigation-warning">
+                        <img src="/assets/icons/penyiraman/warning.svg" alt="" aria-hidden="true">
+                        <h2>Kondisi Kurang Aman</h2>
+                        <p>Siap-siap Siram Blok Berikut</p>
+                        <strong>Blok D, Blok E</strong>
+                    </div>
+                </article>
 
-        <section class="home-alert-shell" aria-label="Status penyiraman">
-            <div class="home-alert-card">
-                <img class="home-drop-off" src="/assets/icons/darurat.svg" alt="" aria-hidden="true">
-                <h1>Kondisi Kritis</h1>
-                <p>Siram Blok Berikut</p>
-                <strong>Blok A, Blok B, Blok C</strong>
+                <article class="irrigation-shell">
+                    <div class="irrigation-card irrigation-safe">
+                        <img src="/assets/icons/penyiraman/success.svg" alt="" aria-hidden="true">
+                        <h2>Kondisi Aman</h2>
+                        <strong>Blok F, Blok G</strong>
+                    </div>
+                </article>
             </div>
         </section>
 
-        <section class="home-legend" aria-label="Keterangan kondisi">
+        <section class="home-legend irrigation-legend" aria-label="Keterangan kondisi">
             <p><span class="legend-critical"></span>Kondisi Kritis</p>
             <p><span class="legend-warning"></span>Kondisi Kurang Aman</p>
             <p><span class="legend-safe"></span>Kondisi Aman</p>
@@ -91,13 +92,13 @@
     </main>
 
     <nav class="home-bottom-nav" aria-label="Navigasi mobile">
-        <a href="/dashboard" class="is-active" aria-label="Beranda">
+        <a href="/dashboard" aria-label="Beranda">
             <svg viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M3 11.5 12 4l9 7.5" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
                 <path d="M6.5 10.5V20h11v-9.5" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
             </svg>
         </a>
-        <a href="/penyiraman" aria-label="Penyiraman">
+        <a href="/penyiraman" class="is-active" aria-label="Penyiraman">
             <svg viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M12 3s6 6.4 6 11a6 6 0 0 1-12 0c0-4.6 6-11 6-11Z" fill="currentColor"/>
             </svg>

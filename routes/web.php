@@ -13,3 +13,11 @@ Route::get('/login', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 });
+
+Route::get('/penyiraman', function () {
+    return view('penyiraman');
+});
+
+Route::get('/riwayat', function () {
+    return view('riwayat');
+});
