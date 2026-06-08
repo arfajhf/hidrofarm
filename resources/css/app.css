@@ -421,7 +421,6 @@ body {
     position: relative;
     width: 100%;
     max-width: 800px;
-    border: 1px solid #000;
 }
 
 .home-metric-card::before,
@@ -627,36 +626,43 @@ body {
 .irrigation-dashboard {
     flex: 1;
     margin: 0 auto;
-    max-width: 1138px;
-    padding: 183px 53px 32px;
+    /* min-width: 1282px; */
+    /* min-width: 1382px; */
+    width: 100%;
+    padding: 119px 100px 36px;
     position: relative;
-    width: min(1138px, calc(100vw - 106px));
     z-index: 1;
+    /* width: min(1282px, calc(100vw - 106px)); */
     box-sizing: border-box;
 }
 
 .irrigation-grid {
-    align-items: start;
+    align-items: stretch; /* Kunci biar tinggi kolom kiri dan kanan sama rata */
     display: grid;
-    gap: 40px;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 60px; /* Jarak ideal antara kolom merah dan kuning-hijau */
+    grid-template-columns: 1fr 1fr;
 }
 
 .irrigation-secondary {
     display: flex;
     flex-direction: column;
-    gap: 80px;
+    justify-content: space-between; /* Biar kuning di atas, hijau mentok bawah */
+    gap: 30px; /* Jarak antara kotak kuning dan hijau */
+    height: 100%;
 }
 
 .irrigation-shell {
     background: rgba(255, 255, 255, 0.72);
     border-radius: 12px;
     box-shadow: 0 17px 26px rgba(0, 0, 0, 0.15);
-    padding: 21px 27px 23px;
+    padding: 21px 25px;
+    width: 100%; /* Biar background putihnya merata */
+    box-sizing: border-box;
 }
 
 .irrigation-critical-shell {
-    padding: 22px 28px 31px;
+    /* padding: 22px 28px 31px; */
+    height: 100%;
 }
 
 .irrigation-card {
@@ -667,6 +673,8 @@ body {
     flex-direction: column;
     justify-content: center;
     text-align: center;
+    width: 100%; /* UBAH: Jangan pake 570px biar gak tumpah keluar shell */
+    box-sizing: border-box;
 }
 
 .irrigation-card img {
@@ -676,7 +684,8 @@ body {
 .irrigation-critical {
     background: #ff252b;
     color: #fff;
-    height: 401px;
+    height: 100%;
+    height: 515px;
     padding: 25px;
 }
 
@@ -702,7 +711,8 @@ body {
 
 .irrigation-warning,
 .irrigation-safe {
-    height: 143px;
+    height: 190px; /* Disesuaikan biar pas menuhin tinggi sebelah kanan */
+    width: 100%; /* UBAH: Hapus 570px */
     padding: 12px 20px;
 }
 
@@ -744,7 +754,7 @@ body {
 }
 
 .irrigation-legend {
-    margin-top: 115px;
+    margin-top: 60px;
 }
 
 /* =========================================================
@@ -783,7 +793,15 @@ body {
     display: block;
     margin-top: 18px;
     position: relative;
-    width: 143px;
+    width: 161px; /* Dilebarin dikit biar lega */
+    background: #ffffffbf; /* Background putih agak transparan */
+    border-radius: 8px; /* Sudutnya dibikin melengkung */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05); /* Dikasih shadow tipis biar elegan */
+    transition: all 0.2s ease;
+}
+
+.history-filter:hover {
+    background: rgba(255, 255, 255, 1); /* Kalau disorot mouse jadi putih solid */
 }
 
 .history-filter::after {
@@ -793,9 +811,9 @@ body {
     height: 8px;
     pointer-events: none;
     position: absolute;
-    right: 10px;
-    top: 8px;
-    transform: rotate(45deg);
+    right: 16px;
+    top: 45%;
+    transform: translateY(-50%) rotate(45deg); /* Panah otomatis di tengah-tengah */
     width: 8px;
 }
 
@@ -806,9 +824,11 @@ body {
     color: #222;
     font-family: inherit;
     font-size: 14px;
+    font-weight: 700; /* Teks ditebelin dikit biar tegas */
     outline: 0;
-    padding: 0 27px 0 12px;
+    padding: 6px 35px 6px 16px; /* Dikasih jarak atas-bawah biar jadi bentuk kotak */
     width: 100%;
+    cursor: pointer;
 }
 
 .history-grid {
@@ -1209,21 +1229,20 @@ body {
     }
 
     .history-filter {
-        margin: 0 0 27px;
-        width: 119px;
+        margin: 0 0 20px;
+        width: 145px;
     }
 
     .history-filter::after {
-        height: 7px;
-        right: 3px;
-        top: 5px;
-        width: 7px;
+        height: 6px;  /* Panah dibikin agak kecil dikit buat layar HP */
+        width: 6px;
+        right: 12px;  /* Jarak aman dari pinggir kanan */
+        top: 45%;
     }
 
     .history-filter select {
         font-size: 12px;
-        padding-left: 4px;
-        padding-right: 20px;
+        padding: 6px 25px 6px 12px;
     }
 
     .history-grid {
