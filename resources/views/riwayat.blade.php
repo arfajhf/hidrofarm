@@ -4,6 +4,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    {{-- icon --}}
+    <link rel="icon" href="{{ url("/assets/icons/icont.png") }}">
     <title>HYDROFARM Riwayat</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
@@ -74,7 +76,7 @@
                 </select>
             </div>
         </section>
-        
+
         <div class="history-grid" id="riwayat-grid">
         </div>
     </main>

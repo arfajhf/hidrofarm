@@ -159,7 +159,7 @@ async function logout(redirect = true) {
 
     if (token && isFuture(localStorage.getItem(authExpiresKey))) {
         try {
-            await requestJson('/auth/logout', {
+            await requestJson('/api/auth/logout', {
                 method: 'POST',
                 headers: {
                     Authorization: `Bearer ${token}`,
@@ -190,7 +190,7 @@ async function requireDashboardAuth() {
     }
 
     try {
-        const payload = await requestJson('/auth/me', {
+        const payload = await requestJson('/api/auth/me', {
             headers: {
                 Authorization: `Bearer ${token}`,
             },
@@ -234,7 +234,7 @@ async function redirectIfAlreadyLoggedIn() {
     }
 
     try {
-        await requestJson('/auth/me', {
+        await requestJson('/api/auth/me', {
             headers: {
                 Authorization: `Bearer ${token}`,
             },
@@ -252,7 +252,7 @@ form?.addEventListener('submit', async (event) => {
     submitButton.textContent = 'Memproses...';
 
     try {
-        const payload = await requestJson('/auth/login', {
+        const payload = await requestJson('/api/auth/login', {
             method: 'POST',
             body: new FormData(form),
         });
@@ -274,7 +274,7 @@ oneTapButton?.addEventListener('click', async () => {
         const body = new FormData();
         body.append('one_tap_token', localStorage.getItem(oneTapTokenKey));
 
-        const payload = await requestJson('/auth/one-tap', {
+        const payload = await requestJson('/api/auth/one-tap', {
             method: 'POST',
             body,
         });
