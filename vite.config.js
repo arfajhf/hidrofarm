@@ -11,7 +11,8 @@ export default defineConfig({
                 'resources/js/beranda.js',
                 'resources/js/penyiraman.js',
                 'resources/js/riwayat.js',
-                'resources/js/detail-riwayat.js'
+                'resources/js/detail-riwayat.js',
+                'resources/js/siranon.js',
             ],
             refresh: true,
             fonts: [

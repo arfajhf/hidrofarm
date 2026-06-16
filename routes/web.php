@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthApiController;
+use App\Http\Controllers\PenyiramanController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -35,6 +36,7 @@ Route::get('/detail-riwayat', function () {
 });
 
 Route::get('/profile', [ProfileController::class, 'index']);
+Route::post('/penyiraman/update', [PenyiramanController::class, 'updatePompa']);
 
 Route::get('/api/beranda-data', function () {
     // Ini data dummy yang formatnya udah disiapin buat nerima data IoT nanti
@@ -57,21 +59,21 @@ Route::get('/api/penyiraman-data', function () {
 
 Route::get('/api/riwayat-data', function (\Illuminate\Http\Request $request) {
     // Tangkap angka dari filter dropdown (default 7 kalau kosong)
-    $hari = $request->query('filter', 7); 
-    
+    $hari = $request->query('filter', 7);
+
     $data = [];
     $namaHari = ['Hari Ini', 'Kemarin', 'Jum\'at', 'Kamis', 'Rabu', 'Selasa', 'Senin'];
 
     // Bikin looping data dummy sebanyak filter yang dipilih
     for ($i = 0; $i < $hari; $i++) {
         $hariTeks = $i < count($namaHari) ? $namaHari[$i] : 'Hari ke-' . ($i + 1);
-        
+
         $data[] = [
             'hari' => $hariTeks,
             'status' => 'Penyiraman Selesai',
             'blok' => 'Blok A, Blok D, Blok E',
             // Kita anggep ikon centang path-nya ini (sesuaiin sama folder lo)
-            'icon' => '/assets/icons/penyiraman/success.svg' 
+            'icon' => '/assets/icons/penyiraman/success.svg'
         ];
     }
 

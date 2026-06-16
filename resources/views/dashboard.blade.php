@@ -4,8 +4,9 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     {{-- icon --}}
-    <link rel="icon" href="{{ url("/assets/icons/icont.png") }}">
+    <link rel="icon" href="{{ url('/assets/icons/icont.png') }}">
     <title>HYDROFARM Dashboard</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
@@ -101,6 +102,26 @@
             </div>
         </section>
 
+        <div class="control-card">
+            <div class="control-header">
+                <img src="/assets/icons/pump.svg" alt=""> Kontrol Pompa Air
+            </div>
+
+            <div class="pump-wrapper">
+                <span class="pump-label">💧 Pompa Penyiraman</span>
+                <span class="pump-name">ztest</span>
+
+                <label class="switch">
+                    <input type="checkbox" id="pompa-toggle" onchange="togglePompaUI(this)">
+                    <span class="slider"></span>
+                </label>
+
+                <div class="status-indicator">
+                    Status: <span id="status-text" class="status-dot"></span> <span id="status-label">MATI</span>
+                </div>
+            </div>
+        </div>
+
         <section class="home-legend" aria-label="Keterangan kondisi">
             <p><span class="legend-critical"></span>Kondisi Kritis</p>
             <p><span class="legend-warning"></span>Kondisi Kurang Aman</p>
@@ -135,7 +156,7 @@
     <footer class="home-footer">Copyright &copy; 2026 Hydrofarm All Rights Reserved.</footer>
 
     {{-- script js --}}
-    @vite(['resources/js/beranda.js'])
+    @vite(['resources/js/beranda.js', 'resources/js/siranon.js'])
 </body>
 
 </html>

@@ -600,6 +600,59 @@ body {
     background: #3ca044;
 }
 
+/* Card Container */
+.control-card {
+    background: linear-gradient(135deg, #22c1c3 0%, #39a940 100%);
+    color: white;
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+
+    margin-top: 19px;
+    width: 100%;
+    max-width: 2282px;
+    /* max-width: 1282px; */
+    box-sizing: border-box;
+}
+
+/* Toggle Switch Style */
+.switch {
+    position: relative; display: inline-block; width: 50px; height: 26px; margin: 15px 0;
+}
+.switch input {
+    opacity: 0; width: 0; height: 0;
+}
+.slider {
+    position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .4s; border-radius: 34px;
+}
+.slider:before {
+    position: absolute; content: ""; height: 20px; width: 20px; left: 3px; bottom: 3px; background-color: white; transition: .4s; border-radius: 50%;
+}
+
+/* Pas ON warna slider berubah */
+input:checked + .slider {
+    background-color: #2ecc71;
+}
+input:checked + .slider:before {
+    transform: translateX(24px);
+}
+
+/* Status Dot */
+.status-dot {
+    display: inline-block; width: 10px; height: 10px; border-radius: 50%; background-color: red;
+}
+input:checked ~ .status-indicator .status-dot {
+    background-color: #2ecc71;
+}
+
+.pump-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
 /* =========================================================
    FOOTER DAN BOTTOM NAVIGATION
    Footer untuk desktop, bottom navigation untuk mobile
@@ -618,6 +671,8 @@ body {
 .home-bottom-nav {
     display: none;
 }
+
+
 
 /* =========================================================
    PENYIRAMAN: kartu kritis, kurang aman, dan aman
@@ -1274,6 +1329,41 @@ body {
     .home-bottom-nav svg {
         height: 24px;
         width: 24px;
+    }
+
+    /* tonggel air on/off */
+    .control-card {
+        padding: 15px; /* Kurangi padding biar card gak terlalu makan space */
+        border-radius: 12px;
+    }
+
+    /* Bikin teks lebih ringkas di HP */
+    .pump-label {
+        font-size: 14px;
+    }
+
+    /* Perkecil toggle switch biar gak menuhin layar */
+    .switch {
+        width: 45px;
+        height: 24px;
+        margin: 10px 0;
+    }
+
+    /* Sesuaikan ukuran bola slider */
+    .slider:before {
+        height: 18px;
+        width: 18px;
+        left: 3px;
+        bottom: 3px;
+    }
+
+    /* Geser slider biar presisi di HP */
+    input:checked + .slider:before {
+        transform: translateX(21px);
+    }
+
+    .status-indicator {
+        font-size: 13px;
     }
 
     /* MOBILE PENYIRAMAN */
